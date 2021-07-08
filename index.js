@@ -122,13 +122,25 @@ function internQ() {
                 type: 'input',
                 message: 'School:',
                 name: 'school',
+            },
+            {
+                type: 'list',
+                message: 'Add another team member?',
+                choices: [{name: 'Yes', value: 0}, {name:'No', value: 1}],
+                name: 'choice',
             }
         ])
         .then((response) => {
+            let i = interns.length;
+            let b = 1;
+            let c = i - b;
+            interns[c].school = response.school;
             console.log(interns);
-            console.log(interns[0].school);
-            interns[0].school = response.school;
-            console.log(interns);
+            if (response.choice === 0) {
+                init();
+            } else if (response.choice === 1) {
+                return;
+            }
         })
 }
 
