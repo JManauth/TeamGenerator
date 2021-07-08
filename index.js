@@ -41,7 +41,6 @@ function init(){
         .then((response) => {
             if (response.employee === 'Manager') {
                     const managerClass = new manager(response.name, response.id, response.email, response.employee, 0);
-                    managerClass.printInfo();
                     managers.push(managerClass);
                     managerQ();
                 } else if( response.employee === 'Engineer') {
@@ -72,8 +71,15 @@ function init(){
             }
         ])
         .then((response) => {
-            console.log(managers[managers.length]);
-            managers[0].office = response.office;
+            let i = managers.length;
+            let b = 1;
+            let c = i - b;
+            console.log('Before');
+            console.log(managers);
+            console.log('After');
+            console.log(i);
+            console.log(managers[0].name);
+            managers[c].office = response.office;
             console.log(managers);
             if (response.choice === 0) {
                 init();
