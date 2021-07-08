@@ -74,11 +74,6 @@ function init(){
             let i = managers.length;
             let b = 1;
             let c = i - b;
-            console.log('Before');
-            console.log(managers);
-            console.log('After');
-            console.log(i);
-            console.log(managers[0].name);
             managers[c].office = response.office;
             console.log(managers);
             if (response.choice === 0) {
@@ -97,13 +92,25 @@ function engineerQ () {
             type: 'input',
             message: 'Github username:',
             name: 'github',
+            },
+            {
+                type: 'list',
+                message: 'Add another team member?',
+                choices: [{name: 'Yes', value: 0}, {name:'No', value: 1}],
+                name: 'choice',
             }
         ])
         .then((response) => {
+            let i = engineers.length;
+            let b = 1;
+            let c = i - b;
+            engineers[c].github = response.github;
             console.log(engineers);
-            console.log(engineers[0].github);
-            engineers[0].github = response.github;
-            console.log(engineers);
+            if (response.choice === 0) {
+                init();
+            } else if (response.choice === 1) {
+                return;
+            }
         })
 };
 
