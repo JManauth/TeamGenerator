@@ -11,6 +11,24 @@ const { type } = require('os');
 const managers = [];
 const engineers = [];
 const interns = [];
+const initialHTML = (
+    `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/css/reset.css">
+        <link rel="stylesheet" href="./assets/css/stylesheet.css">
+        <title>Team Roster</title>
+    </head>
+    <body>
+            <div class="header">
+                <h1 id="title">MY TEAM</h1>
+            </div>
+        <div class="cards">`
+);
+
 //const choices = ['Manager', 'Engineer', 'Intern'];
 //function that initializes app
 function init(){
@@ -76,10 +94,25 @@ function init(){
             let b = 1;
             let c = i - b;
             managers[c].office = response.office;
-            console.log(managers);
+            let managercard = (
+                `<div class="card">
+                <div id="cardhead">
+                <h1>${managers[c].name}</h1>
+                <h2>Manager</h2>
+                </div>
+                <p>ID: ${managers[c].id}</p>
+                <p>Email: ${managers[c].email}</p>
+                <p>office number: ${managers[c].office}</p>
+                </div>`
+            );
+            fs.appendFile('index.html', managercard, (err) =>
+            err ? console.error(err) : console.log('html appended')
+            );
+            //console.log(managers);
             if (response.choice === 0) {
                 init();
             } else if (response.choice === 1) {
+                //appendHTML();
                 return;
             }
         })
@@ -110,7 +143,7 @@ function engineerQ () {
             if (response.choice === 0) {
                 init();
             } else if (response.choice === 1) {
-                return;
+                appendHTML();
             }
         })
 };
@@ -140,13 +173,37 @@ function internQ() {
             if (response.choice === 0) {
                 init();
             } else if (response.choice === 1) {
-                return;
+                appendHTML();
             }
         })
 }
 //this function uses the user's input to create an HTML file
+
 function makeHTML() {
+    fs.writeFile('index.html', initialHTML, (err) => 
+    err ? console.error(err) : console.log('success!')
+    );
+}
+function appendHTML(){
+    
+    for (let i = 1; managers.length <= i; i++){
+        let managercard = (
+            `<div class="card">
+            <div id="cardhead">
+            <h1>${this.name}</h1>
+            <h2>Manager</h2>
+            </div>
+            <p>ID: ${this.id}</p>
+            <p>Email: ${this.email}</p>
+            <p>office number: ${this.office}</p>
+            </div>`
+        );
+        fs.appendFile('index.html', managercard, (err) =>
+        err ? console.error(err) : console.log('manager card for ' + managers[i].name + ' appended to HTML')
+        );
+    }
 
 }
 //function call to initialize app
 init();
+makeHTML();
