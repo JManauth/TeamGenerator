@@ -51,9 +51,10 @@ function init(){
                     const internClass = new intern(response.name, response.id, response.email, response.employee, 0)
                     interns.push(internClass);
                     internQ();
-                };
-            }); 
-};
+                }
+            });
+        };
+
 // function branch for manager
  function managerQ(){
     inquirer
@@ -143,6 +144,9 @@ function internQ() {
             }
         })
 }
+//this function uses the user's input to create an HTML file
+function makeHTML() {
 
+}
 //function call to initialize app
 init();

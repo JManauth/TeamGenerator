@@ -1,0 +1,28 @@
+.header{
+    width: 100%;
+    min-height: 200px;
+    background-color: black;
+}
+.header h1{
+    display: block;
+    position: relative;
+    text-align: center;
+    color: white;
+    font-size: xx-large;
+}
+.cards{
+    margin:10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+#cardhead{
+    background-color: black;
+    color: white;
+}
+.card{
+    width: 25%;
+    text-align: center;
+    margin: 1%;
+}
