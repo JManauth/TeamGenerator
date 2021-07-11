@@ -28,6 +28,11 @@ const initialHTML = (
             </div>
         <div class="cards">`
 );
+const endingHTML = (
+    `</div>
+    </body>
+    </html>`
+);
 
 //const choices = ['Manager', 'Engineer', 'Intern'];
 //function that initializes app
@@ -95,7 +100,8 @@ function init(){
             let c = i - b;
             managers[c].office = response.office;
             let managercard = (
-                `<div class="card">
+                `\n
+                <div class="card">
                 <div id="cardhead">
                 <h1>${managers[c].name}</h1>
                 <h2>Manager</h2>
@@ -105,14 +111,14 @@ function init(){
                 <p>office number: ${managers[c].office}</p>
                 </div>`
             );
-            fs.appendFile('index.html', managercard, (err) =>
+            fs.appendFileSync('index.html', managercard, (err) =>
             err ? console.error(err) : console.log('html appended')
             );
             //console.log(managers);
             if (response.choice === 0) {
                 init();
             } else if (response.choice === 1) {
-                //appendHTML();
+                endHTML();
                 return;
             }
         })
@@ -139,11 +145,27 @@ function engineerQ () {
             let b = 1;
             let c = i - b;
             engineers[c].github = response.github;
-            console.log(engineers);
+            //console.log(engineers);
+            let engineercard = (
+                `\n
+                <div class="card">
+                <div id="cardhead">
+                <h1>${engineers[c].name}</h1>
+                <h2>Manager</h2>
+                </div>
+                <p>ID: ${engineers[c].id}</p>
+                <p>Email: ${engineers[c].email}</p>
+                <p>Github: ${engineers[c].github}</p>
+                </div>`
+            );
+            fs.appendFileSync('index.html', engineercard, (err) =>
+            err ? console.error(err) : console.log('html appended')
+            );
             if (response.choice === 0) {
                 init();
             } else if (response.choice === 1) {
-                appendHTML();
+                endHTML();
+                return;
             }
         })
 };
@@ -169,40 +191,41 @@ function internQ() {
             let b = 1;
             let c = i - b;
             interns[c].school = response.school;
-            console.log(interns);
+            //console.log(interns);
+            let interncard = (
+                `<div class="card">
+                <div id="cardhead">
+                <h1>${interns[c].name}</h1>
+                <h2>Manager</h2>
+                </div>
+                <p>ID: ${interns[c].id}</p>
+                <p>Email: ${interns[c].email}</p>
+                <p>School: ${interns[c].school}</p>
+                </div>`
+            );
+            fs.appendFileSync('index.html', interncard, (err) =>
+            err ? console.error(err) : console.log('html appended')
+            );
             if (response.choice === 0) {
                 init();
             } else if (response.choice === 1) {
-                appendHTML();
+                endHTML();
+                return;
             }
         })
 }
 //this function uses the user's input to create an HTML file
 
 function makeHTML() {
-    fs.writeFile('index.html', initialHTML, (err) => 
+    fs.writeFileSync('index.html', initialHTML, (err) => 
     err ? console.error(err) : console.log('success!')
     );
-}
-function appendHTML(){
-    
-    for (let i = 1; managers.length <= i; i++){
-        let managercard = (
-            `<div class="card">
-            <div id="cardhead">
-            <h1>${this.name}</h1>
-            <h2>Manager</h2>
-            </div>
-            <p>ID: ${this.id}</p>
-            <p>Email: ${this.email}</p>
-            <p>office number: ${this.office}</p>
-            </div>`
-        );
-        fs.appendFile('index.html', managercard, (err) =>
-        err ? console.error(err) : console.log('manager card for ' + managers[i].name + ' appended to HTML')
-        );
-    }
+};
 
+function endHTML() {
+    fs.appendFileSync('index.html', endingHTML, (err) =>
+    err ? console.error(err) : console.log ('HTML closed out!')
+    );
 }
 //function call to initialize app
 init();
