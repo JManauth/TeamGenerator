@@ -151,7 +151,7 @@ function engineerQ () {
                 <div class="card">
                 <div id="cardhead">
                 <h1>${engineers[c].name}</h1>
-                <h2>Manager</h2>
+                <h2>Engineer</h2>
                 </div>
                 <p>ID: ${engineers[c].id}</p>
                 <p>Email: ${engineers[c].email}</p>
@@ -196,7 +196,7 @@ function internQ() {
                 `<div class="card">
                 <div id="cardhead">
                 <h1>${interns[c].name}</h1>
-                <h2>Manager</h2>
+                <h2>Intern</h2>
                 </div>
                 <p>ID: ${interns[c].id}</p>
                 <p>Email: ${interns[c].email}</p>
