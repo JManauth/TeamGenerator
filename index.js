@@ -4,7 +4,7 @@ const fs = require('fs');
 const manager = require('./classes/manager');
 const engineer = require('./classes/engineer');
 const intern = require('./classes/intern');
-const { type } = require('os');
+
 
 
 //classes
@@ -29,7 +29,8 @@ const initialHTML = (
         <div class="cards">`
 );
 const endingHTML = (
-    `</div>
+    `\n
+    </div>
     </body>
     </html>`
 );
@@ -107,7 +108,7 @@ function init(){
                 <h2>Manager</h2>
                 </div>
                 <p>ID: ${managers[c].id}</p>
-                <p>Email: ${managers[c].email}</p>
+                <a href="mailto:address"> ${managers[c].email}</a>
                 <p>office number: ${managers[c].office}</p>
                 </div>`
             );
@@ -154,7 +155,7 @@ function engineerQ () {
                 <h2>Engineer</h2>
                 </div>
                 <p>ID: ${engineers[c].id}</p>
-                <p>Email: ${engineers[c].email}</p>
+                <a href="mailto:address"> ${engineers[c].email}</a>
                 <p>Github: ${engineers[c].github}</p>
                 </div>`
             );
@@ -193,13 +194,14 @@ function internQ() {
             interns[c].school = response.school;
             //console.log(interns);
             let interncard = (
-                `<div class="card">
+                `\n
+                <div class="card">
                 <div id="cardhead">
                 <h1>${interns[c].name}</h1>
                 <h2>Intern</h2>
                 </div>
                 <p>ID: ${interns[c].id}</p>
-                <p>Email: ${interns[c].email}</p>
+                <a href="mailto:address"> ${interns[c].email}</a>
                 <p>School: ${interns[c].school}</p>
                 </div>`
             );

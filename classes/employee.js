@@ -4,13 +4,20 @@ class employee{
         this.name = name;
         this.id = id;
         this.email = email;
-        this.employee = employee;
+        this.employee = employee;  
     }
-    printInfo() {
-        console.log(this.name);
-        console.log(this.id);
-        console.log(this.email);
-        console.log(this.employee);
-    };
+    
+}
+function getName(){
+    console.log(this.name);
+};
+function getId(){
+    console.log(this.id);
+}
+function getEmail(){
+    console.log(this.email);
+};
+function getRole(){
+    console.log(this.employee);
 }
 module.exports = employee;
